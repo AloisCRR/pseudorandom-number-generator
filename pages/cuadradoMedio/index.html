@@ -37,12 +37,20 @@
             />
           </div>
         </div>
-        <button
-          type="submit"
-          class="mt-4 transition duration-500 ease-in-out bg-teal-500 hover:bg-red-500 transform hover:scale-110 focus:outline-none p-3 rounded-full"
-        >
-          Generar
-        </button>
+        <div class="flex">
+          <button
+            type="submit"
+            class="flex-1 mt-4 mr-2 transition duration-500 ease-in-out bg-teal-500 hover:bg-red-500 transform hover:scale-110 focus:outline-none p-3 rounded-full"
+          >
+            Generar
+          </button>
+          <button
+            type="reset"
+            class="flex-1 mt-4 ml-2 transition duration-500 ease-in-out bg-teal-500 hover:bg-red-500 transform hover:scale-110 focus:outline-none p-3 rounded-full"
+          >
+            Limpiar
+          </button>
+        </div>
       </form>
       <table class="table-fixed mt-8 rounded-lg bg-teal-200 w-2/5">
         <thead>
@@ -54,7 +62,7 @@
             <th class="py-2">Valor<sup>2</sup></th>
           </tr>
         </thead>
-        <tbody id="tableBody"></tbody>
+        <tbody id="tableBody" class="text-center"></tbody>
       </table>
     </div>
     <script src="./app.js"></script>
