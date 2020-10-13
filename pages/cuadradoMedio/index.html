@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Método cuadrado medio</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link href="styles.css" rel="stylesheet" />
+  </head>
+  <body class="bg-teal-600">
+    <div class="h-screen w-screen flex flex-col items-center">
+      <div class="text-5xl mt-32 mb-8 font-bold">Método de cuadrado medio</div>
+      <form id="form" class="flex flex-col">
+        <div class="flex">
+          <div class="text-center mr-2">
+            <div class="text-xl mb-4">Ingresar semilla</div>
+            <input
+              type="number"
+              id="semilla"
+              min="0"
+              class="p-3 rounded-full text-center focus:outline-none"
+              autofocus
+              required
+            />
+          </div>
+          <div class="text-center ml-2">
+            <div class="text-xl mb-4">Cantidad de iteraciones</div>
+            <input
+              type="number"
+              id="iteraciones"
+              min="0"
+              class="p-3 rounded-full text-center focus:outline-none"
+              required
+            />
+          </div>
+        </div>
+        <button
+          type="submit"
+          class="mt-4 transition duration-500 ease-in-out bg-teal-500 hover:bg-red-500 transform hover:scale-110 focus:outline-none p-3 rounded-full"
+        >
+          Generar
+        </button>
+      </form>
+      <table class="table-fixed mt-8 rounded-lg bg-teal-200 w-2/5">
+        <thead>
+          <tr>
+            <th class="py-2">n</th>
+            <th class="py-2">R(n)</th>
+            <th class="py-2">R(n)<sup>2</sup></th>
+            <th class="py-2">M.R(n)<sup>2</sup></th>
+            <th class="py-2">Valor<sup>2</sup></th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>
