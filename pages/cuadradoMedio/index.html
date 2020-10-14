@@ -11,7 +11,7 @@
     <link href="styles.css" rel="stylesheet" />
   </head>
   <body class="bg-teal-600">
-    <div class="h-screen w-screen flex flex-col items-center">
+    <div class="h-screen w-screen flex flex-col items-center overflow-y-auto">
       <div class="text-5xl mt-32 mb-8 font-bold">Método de cuadrado medio</div>
       <form id="form" class="flex flex-col">
         <div class="flex">
@@ -46,25 +46,27 @@
           </button>
           <button
             type="reset"
+            id="clear"
             class="flex-1 mt-4 ml-2 transition duration-500 ease-in-out bg-teal-500 hover:bg-red-500 transform hover:scale-110 focus:outline-none p-3 rounded-full"
           >
             Limpiar
           </button>
         </div>
       </form>
-      <table class="table-fixed mt-8 rounded-lg bg-teal-200 w-2/5">
+      <table class="table-fixed my-8 rounded-lg bg-teal-200 w-2/5">
         <thead>
           <tr>
             <th class="py-2">n</th>
             <th class="py-2">R(n)</th>
             <th class="py-2">R(n)<sup>2</sup></th>
             <th class="py-2">M.R(n)<sup>2</sup></th>
-            <th class="py-2">Valor<sup>2</sup></th>
+            <th class="py-2">Valor</th>
           </tr>
         </thead>
-        <tbody id="tableBody" class="text-center"></tbody>
+        <tbody id="tableBody"></tbody>
       </table>
     </div>
-    <script src="./app.js"></script>
+    <script type="module" src="./app.js"></script>
+    <script type="module" src="../../app.js"></script>
   </body>
 </html>
