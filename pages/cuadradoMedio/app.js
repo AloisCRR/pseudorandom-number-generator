@@ -1,14 +1,24 @@
-const form = document.getElementById("form");
+import { mitadPalabra, newCell, wipeTable, $ } from "../../app.js";
+
+const form = $("#form");
+const buttonClear = $("#clear");
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  let seed = document.getElementById("semilla").value;
-  let it = document.getElementById("iteraciones").value;
+  let seed = $("#semilla").value;
+  let it = $("#iteraciones").value;
   tableGen(seed, it);
 });
 
+buttonClear.addEventListener("click", () => {
+  wipeTable();
+  $("#semilla").focus();
+});
+
 function tableGen(seed, it) {
-  const tbody = document.getElementById("tableBody");
+  wipeTable();
+
+  const tbody = $("#tableBody");
 
   let n1 = seed;
 
@@ -24,27 +34,15 @@ function tableGen(seed, it) {
   }
 }
 
-function newCell(row, content, pos) {
-  let cell = row.insertCell(pos);
-  cell.classList.add("py-3");
-  let text = document.createTextNode(content);
-  cell.appendChild(text);
-}
-
 function cuadradoMedio(n) {
   let rn2 = Math.pow(n, 2).toString();
 
+  // TODO Arreglar bug de los ceros
+
   let mrn2 =
     n.toString().length % 2 != 0 && rn2.length % 2 == 0
-      ? rn2.substr(mitadPalabra("0" + rn2, n) - 1, n.toString().length)
+      ? rn2.substr(mitadPalabra(rn2, n) - 1, n.toString().length)
       : rn2.substr(mitadPalabra(rn2, n), n.toString().length);
 
   return mrn2;
-}
-
-function mitadPalabra(p1, p2) {
-  let p1m = Math.trunc(p1.toString().length / 2);
-  let p2m = Math.trunc(p2.toString().length / 2);
-
-  return parseInt(p1m - p2m);
 }
