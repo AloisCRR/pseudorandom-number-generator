@@ -1,4 +1,4 @@
-import { mitadPalabra, newCell, wipeTable, $ } from "../../app.js";
+import { mitadPalabras, newCell, wipeTable, $, medio } from "../../app.js";
 
 const form = $("#form");
 const buttonClear = $("#clear");
@@ -21,28 +21,28 @@ function tableGen(seed, it) {
   const tbody = $("#tableBody");
 
   let n1 = seed;
+  var r;
+  var p;
 
   for (let i = 0; i < it; i++) {
     const row = tbody.insertRow();
+
+    p = Math.pow(n1, 2);
+    r = cuadradoMedio(n1, p);
+
     newCell(row, i, 0);
     newCell(row, n1, 1);
-    newCell(row, Math.pow(n1, 2), 2);
-    newCell(row, cuadradoMedio(n1), 3);
-    newCell(row, cuadradoMedio(n1), 4);
+    newCell(row, p, 2);
+    newCell(row, r, 3);
+    newCell(row, r, 4);
 
-    n1 = cuadradoMedio(n1);
+    n1 = cuadradoMedio(n1, p);
   }
 }
 
-function cuadradoMedio(n) {
-  let rn2 = Math.pow(n, 2).toString();
+function cuadradoMedio(n, p) {
+  let rn2 = p.toString();
+  let m = mitadPalabras(rn2, n);
 
-  // TODO Arreglar bug de los ceros
-
-  let mrn2 =
-    n.toString().length % 2 != 0 && rn2.length % 2 == 0
-      ? rn2.substr(mitadPalabra(rn2, n) - 1, n.toString().length)
-      : rn2.substr(mitadPalabra(rn2, n), n.toString().length);
-
-  return mrn2;
+  return medio(n, rn2, m);
 }

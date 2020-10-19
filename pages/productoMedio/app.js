@@ -1,4 +1,11 @@
-import { mitadPalabra, newCell, wipeTable, $ } from "../../app.js";
+import {
+  mitadPalabras,
+  newCell,
+  wipeTable,
+  $,
+  medio,
+  mismaLongitud,
+} from "../../app.js";
 
 const form = $("#form");
 const buttonClear = $("#clear");
@@ -51,21 +58,7 @@ function tableGen(seed1, seed2, it) {
 
 function productoMedio(n1, n2) {
   let rn2 = (n1 * n2).toString();
+  let m = mitadPalabras(rn2, n1);
 
-  // TODO Arreglar bug de los ceros
-
-  let mrn2 =
-    n1.toString().length % 2 != 0 && rn2.length % 2 == 0
-      ? rn2.substr(mitadPalabra(rn2, n1) - 1, n1.toString().length)
-      : rn2.substr(mitadPalabra(rn2, n1), n1.toString().length);
-
-  return mrn2;
-}
-
-function mismaLongitud(n1, n2) {
-  if (n1.toString().length == n2.toString().length) {
-    return true;
-  }
-
-  return false;
+  return medio(n1, rn2, m);
 }
