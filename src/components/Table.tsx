@@ -1,12 +1,12 @@
 import React from 'react';
-import type { TableData } from '../pages/MiddleSquare';
+import type { TableData } from '../hooks/usePseudorandomNumberGenerator';
 
 type Props = {
   data: TableData[];
 };
 
 const Table = ({ data: tableData }: Props) => (
-  <table className="table-fixed mt-10 rounded-lg bg-white w-1/2">
+  <table className="table-fixed my-10 rounded-lg bg-white w-1/2">
     <caption className="text-lg text-white mb-3">Results</caption>
     <thead>
       <tr>
