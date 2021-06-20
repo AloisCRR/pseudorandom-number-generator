@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import MethodTitle from '../components/MethodTitle';
@@ -13,6 +13,8 @@ const MiddleProduct = (): JSX.Element => {
     seed: { seedOne: 0, seedTwo: 0 },
   });
 
+  const [error, setError] = useState(false);
+
   const handleFormSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
@@ -21,6 +23,17 @@ const MiddleProduct = (): JSX.Element => {
       seed2: { value: number };
       iterations: { value: number };
     };
+
+    const seed1 = target.seed1.value;
+    const seed2 = target.seed2.value;
+
+    if (seed1.toString().length !== seed2.toString().length) {
+      setError(true);
+
+      return;
+    }
+
+    setError(false);
 
     setSeedAndIterations({
       iterations: target.iterations.value,
@@ -43,7 +56,13 @@ const MiddleProduct = (): JSX.Element => {
           <Button text="Clear" />
         </div>
       </form>
-      <Table data={tableData} />
+      {error ? (
+        <strong className="text-2xl font-bold my-10 p-4 text-red-500 border-4 border-red-500 rounded-lg">
+          In middle product method both seeds need to share the same length
+        </strong>
+      ) : (
+        <Table data={tableData} />
+      )}
     </PageBase>
   );
 };
