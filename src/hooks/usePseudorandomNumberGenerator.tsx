@@ -41,7 +41,7 @@ export default function usePseudorandomNumberGenerator(
   const getMethodResult = () => {
     const dataResult: TableData[] = [];
 
-    let seed: number = 0;
+    let seed = seedAndIterations.seed.seedOne;
 
     if (seedAndIterations.method === 'middle-product') {
       seed = seedAndIterations.seed.seedOne * seedAndIterations.seed.seedTwo;
