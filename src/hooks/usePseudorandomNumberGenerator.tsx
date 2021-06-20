@@ -1,35 +1,27 @@
 import { useEffect, useState } from 'react';
 
 type DefaultData = {
-  seedOne: number;
   iterations: number;
 };
 
-type MiddleSquare = {
+type MiddleSquare = DefaultData & {
   method: 'middle-square';
-  seedAndIterations: DefaultData;
+  seed: { seedOne: number };
 };
 
-type MiddleProductData = DefaultData & {
-  seedTwo: number;
-};
-
-type MiddleProduct = {
+type MiddleProduct = DefaultData & {
   method: 'middle-product';
-  seedAndIterations: MiddleProductData;
+  seed: { seedOne: number; seedTwo: number };
 };
 
 export type TableData = [number, number, number, string, string];
 
 export default function usePseudorandomNumberGenerator(
-  method: MiddleSquare['method'] | MiddleProduct['method'],
+  initialData: MiddleSquare | MiddleProduct,
 ) {
   const [tableData, setTableData] = useState<TableData[]>([]);
-  const [seedAndIterations, setSeedAndIterations] = useState<
-    typeof method extends MiddleSquare['method']
-      ? DefaultData
-      : MiddleProductData
-  >({ iterations: 0, seedOne: 0, seedTwo: 0 });
+
+  const [seedAndIterations, setSeedAndIterations] = useState(initialData);
 
   const middleSquare = (
     generatedSeed: string,
@@ -49,10 +41,11 @@ export default function usePseudorandomNumberGenerator(
   const getMethodResult = () => {
     const dataResult: TableData[] = [];
 
-    let seed =
-      method === 'middle-square'
-        ? seedAndIterations.seedOne
-        : seedAndIterations.seedOne * seedAndIterations.seedTwo;
+    let seed: number = 0;
+
+    if (seedAndIterations.method === 'middle-product') {
+      seed = seedAndIterations.seed.seedOne * seedAndIterations.seed.seedTwo;
+    }
 
     for (let index = 0; index < seedAndIterations.iterations; index += 1) {
       const seedSquared = seed ** 2;
