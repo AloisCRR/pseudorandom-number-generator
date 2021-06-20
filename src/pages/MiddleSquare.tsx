@@ -22,10 +22,12 @@ const MiddleSquare = (): JSX.Element => {
     };
 
     setSeedAndIterations({
-      iterations: 0,
+      iterations: target.iterations.value,
       method: 'middle-square',
       seed: { seedOne: target.seed.value },
     });
+
+    console.log(tableData);
   };
 
   return (
